@@ -1,4 +1,5 @@
 import 'package:mockito/mockito.dart';
+import 'package:pomona/reading_list/data/database_handler/query_builder.dart';
 import 'package:pomona/reading_list/data/database_handler/query_executor.dart';
 import 'package:pomona/reading_list/data/repositories/reading_list_repository.dart';
 import 'package:test/test.dart';
@@ -13,6 +14,11 @@ void main() {
         () {
       ReadingListRepoImpl readingListRepoImpl =
           ReadingListRepoImpl(queryExecutor);
+      readingListRepoImpl.fetchReadingLists();
+      verifyInOrder([
+        QueryBuilder().buildSelect(table: 'readingLists'),
+        queryExecutor.execute("SELECT * FROM readingLists", [])
+      ]);
     });
   });
 }

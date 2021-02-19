@@ -5,6 +5,7 @@ import 'package:sqflite/sqflite.dart';
 class QueryExecutor{
   Database db;
   QueryExecutor({this.db});
+  //this does not return a value. a function like query should be used
   Future<dynamic> execute(String query,List<dynamic> data){
     return db.execute(query,data);
   }
