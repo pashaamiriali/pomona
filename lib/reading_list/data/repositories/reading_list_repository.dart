@@ -9,9 +9,11 @@ class ReadingListRepoImpl extends ReadingListRepo {
   ReadingListRepoImpl(this._queryExecutor);
 
   @override
-  Future<List<ReadingList>> fetchReadingLists() {
+  Future<List<ReadingList>> fetchReadingLists() async {
     String query = QueryBuilder().buildSelect(table: 'readingLists');
-    var database_data = _queryExecutor.execute(query, []);
+    //TODO: create a query
+    List<Map<String, dynamic>> database_data =
+        await _queryExecutor.executeSelect(query, []);
     // TODO: step three: turn the result into a list of reading lists
     // TODO: step four: return the formatted results
   }

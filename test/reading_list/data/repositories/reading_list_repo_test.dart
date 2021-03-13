@@ -9,16 +9,11 @@ class MockQueryExecutor extends Mock implements QueryExecutor {}
 void main() {
   MockQueryExecutor queryExecutor = MockQueryExecutor();
   group('fetchReadingLists', () {
-    test(
-        'fetchReadingLists should call the functions from database handlers in order',
+    test('fetchReadingLists should use executeSelect with the right sql query',
         () {
-      ReadingListRepoImpl readingListRepoImpl =
-          ReadingListRepoImpl(queryExecutor);
-      readingListRepoImpl.fetchReadingLists();
-      verifyInOrder([
-        QueryBuilder().buildSelect(table: 'readingLists'),
-        queryExecutor.execute("SELECT * FROM readingLists", [])
-      ]);
-    });
+          ReadingListRepoImpl repo = ReadingListRepoImpl(queryExecutor);
+          repo.fetchReadingLists();
+          verify(queryExecutor.executeSelect('SELECT * FROM reading_lists', []));
+        });
   });
 }
