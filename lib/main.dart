@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
-import 'homepage.dart';
+import 'reading_list/presentation/homepage/homepage.dart';
 import 'listpage.dart';
 import 'bookpage.dart';
 
 void main() {
+  //TODO create the database creation sequence here
   runApp(Pomona());
 }
 

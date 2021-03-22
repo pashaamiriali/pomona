@@ -7,6 +7,7 @@ const version = 1;
 class DatabaseProvider {
   Database db;
 
+//TODO create the creation sequence here (tables and backward compatibility)
   //! run after WidgetsFlutterBinding.ensureInitialized
   Future<void> initiateDatabase() async {
     db = await openDatabase(join(await getDatabasesPath(), db_name));
